@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/fast_forward" />
+
+            <TextView
+                android:id="@+id/TaskBoard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/task_board"
+                android:textColor="@color/dark_purple"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/TaskBoard"
+                app:layout_constraintStart_toStartOf="@+id/TaskBoard"
+                app:layout_constraintTop_toBottomOf="@+id/TaskBoard" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="530dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:orientation="vertical">
+
+                <!-- לינאר אופקי 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- ריבוע 1 -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_with_shadow">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="8dp"
+                            android:layout_margin="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <!-- תמונה במרכז -->
+                            <ImageView
+                                android:id="@+id/imageView1"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/mortarboard"
+                                android:contentDescription="Folder Image"
+                                android:layout_gravity="center" />
+
+                            <!-- טקסט מתחת לתמונה -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Education"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="16sp"
+                                android:gravity="center" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </FrameLayout>
+
+
+                    <!-- ריבוע 2 -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_with_shadow">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="8dp"
+                            android:layout_margin="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <!-- תמונה במרכז -->
+
+                                <!-- טקסט מתחת לתמונה -->
+                                <ImageView
+                                    android:id="@+id/imageView2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="Folder Image"
+                                    android:src="@drawable/paint_palette" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Hobbies"
+                                    android:textColor="@color/dark_purple"
+                                    android:textSize="16sp"
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- לינאר אופקי 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- ריבוע 3 -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_with_shadow">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="8dp"
+                            android:layout_margin="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <!-- תמונה במרכז -->
+                                <ImageView
+                                    android:id="@+id/imageView3"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:src="@drawable/cycling"
+                                    android:contentDescription="Folder Image"
+                                    android:layout_gravity="center" />
+
+                                <!-- טקסט מתחת לתמונה -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Sport"
+                                    android:textColor="@color/dark_purple"
+                                    android:textSize="16sp"
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
+
+                    <!-- ריבוע 4 -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_with_shadow">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="8dp"
+                            android:layout_margin="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <!-- תמונה במרכז -->
+
+                                <!-- טקסט מתחת לתמונה -->
+                                <ImageView
+                                    android:id="@+id/imageView4"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="Folder Image"
+                                    android:src="@drawable/boss" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Work"
+                                    android:textColor="@color/dark_purple"
+                                    android:textSize="16sp"
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <!-- לינאר אופקי 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- ריבוע 5 -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_with_shadow">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="8dp"
+                            android:layout_margin="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <!-- תמונה במרכז -->
+
+                                <!-- טקסט מתחת לתמונה -->
+                                <ImageView
+                                    android:id="@+id/imageView5"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="Folder Image"
+                                    android:src="@drawable/money_bag" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Money"
+                                    android:textColor="@color/dark_purple"
+                                    android:textSize="16sp"
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
+
+                    <!-- ריבוע 6 -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_with_shadow">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="8dp"
+                            android:layout_margin="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <!-- תמונה במרכז -->
+                                <ImageView
+                                    android:id="@+id/imageView6"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:src="@drawable/warning"
+                                    android:contentDescription="Folder Image"
+                                    android:layout_gravity="center" />
+
+                                <!-- טקסט מתחת לתמונה -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Urgent!"
+                                    android:textColor="@color/dark_purple"
+                                    android:textSize="16sp"
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

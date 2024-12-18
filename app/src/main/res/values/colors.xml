@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="NevBarBackgroundColor">#caf0f8</color>
+    <color name="AddTaskButton">#90E0EF</color>
+    <color name="dark_purple">#333399</color>
+    <color name="light_purple">#F1EBFD</color>
+</resources>
