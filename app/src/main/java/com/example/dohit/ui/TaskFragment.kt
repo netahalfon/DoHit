@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.dohit.R
 import com.example.dohit.databinding.FragmentTaskBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -90,11 +94,19 @@ class TaskFragment : Fragment() {
 
                 // עדכון התמונה הנוכחית כפעילה
                 currentActiveImageView = imageView
+                lifecycleScope.launch {
+                    delay(2000) // השהיה של 2 שניות
+                    val folderNames = listOf("Education", "Hobbies", "Sport", "Work", "Money", "Urgent!")
+                    val action = TaskFragmentDirections.actionTaskFragmentToTaskListFragment(folderNames[index])
+                    findNavController().navigate(action)
+                }
             }
         }
 
         return binding.root
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
