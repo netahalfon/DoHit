@@ -9,7 +9,7 @@ import androidx.room.Query
 
 @Dao
 interface TaskDao {
-    @Query("SELECT * FROM tasks ORDER BY dueDate ASC")
+    @Query("SELECT * FROM tasks ORDER BY lastModifiedDate ASC")
     fun getAllTasks(): LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

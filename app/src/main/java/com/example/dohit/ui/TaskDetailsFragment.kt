@@ -38,7 +38,7 @@ class TaskDetailsFragment : Fragment() {
             task?.let {
                 binding.taskTitleDetails.text = it.title
                 binding.taskDescriptionDetails.text = it.description
-                binding.taskDueDateDetails.text = getString(R.string.due_date, it.dueDate)
+                binding.taskDueDateDetails.text = getString(R.string.due_date, it.lastModifiedDate)
             }
         }
 

@@ -208,10 +208,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
+                                    android:gravity="center"
                                     android:text="Sport"
                                     android:textColor="@color/dark_purple"
-                                    android:textSize="16sp"
-                                    android:gravity="center" />
+                                    android:textSize="16sp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -339,19 +339,19 @@
                                     android:id="@+id/imageView6"
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
-                                    android:src="@drawable/warning"
+                                    android:layout_gravity="center"
                                     android:contentDescription="Folder Image"
-                                    android:layout_gravity="center" />
+                                    android:src="@drawable/warning" />
 
                                 <!-- טקסט מתחת לתמונה -->
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
+                                    android:gravity="center"
                                     android:text="Urgent!"
                                     android:textColor="@color/dark_purple"
-                                    android:textSize="16sp"
-                                    android:gravity="center" />
+                                    android:textSize="16sp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
