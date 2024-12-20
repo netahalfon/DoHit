@@ -10,5 +10,6 @@ data class Task(
     val description: String,
     val dueDate: String,
     val priority: Int,
-    val imageUri: String? = null
+    val imageUri: String? = null,
+    val folderName: String
 )

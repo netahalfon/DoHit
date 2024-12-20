@@ -30,10 +30,10 @@ class AddEditTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // קבלת ה-taskId מה-arguments
-        val taskId = arguments?.getInt("taskId") ?: -1
-
+        val taskId = arguments?.let {
+            AddEditTaskFragmentArgs.fromBundle(it).taskId
+        } ?: -1
         if (taskId != -1) {
-            // עריכת משימה קיימת
             taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
                 val task = tasks.find { it.id == taskId }
                 task?.let {
@@ -54,7 +54,8 @@ class AddEditTaskFragment : Fragment() {
                 title = title,
                 description = description,
                 dueDate = "2024-12-31", // תאריך דוגמה
-                priority = 1 // עדיפות דוגמה
+                priority = 1,
+                folderName = "Sport" // עדיפות דוגמה
             )
 
             // שמירה במסד הנתונים

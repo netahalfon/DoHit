@@ -9,6 +9,13 @@ import androidx.room.Query
 
 @Dao
 interface TaskDao {
+    @Query("SELECT * FROM tasks")
+    fun getAllTasksRaw(): List<Task>
+
+
+    @Query("SELECT * FROM tasks WHERE folderName = :folderName ORDER BY dueDate ASC")
+    fun getTasksByFolder(folderName: String): LiveData<List<Task>>
+
     @Query("SELECT * FROM tasks ORDER BY dueDate ASC")
     fun getAllTasks(): LiveData<List<Task>>
 
