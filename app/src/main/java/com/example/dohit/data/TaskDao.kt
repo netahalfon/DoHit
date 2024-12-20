@@ -13,10 +13,10 @@ interface TaskDao {
     fun getAllTasksRaw(): List<Task>
 
 
-    @Query("SELECT * FROM tasks WHERE folderName = :folderName ORDER BY dueDate ASC")
-    fun getTasksByFolder(folderName: String): LiveData<List<Task>>
+    @Query("SELECT * FROM tasks WHERE category = :category ORDER BY lastModifiedDate ASC")
+    fun getTasksByFolder(category: String): LiveData<List<Task>>
 
-    @Query("SELECT * FROM tasks ORDER BY dueDate ASC")
+    @Query("SELECT * FROM tasks ORDER BY lastModifiedDate ASC")
     fun getAllTasks(): LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

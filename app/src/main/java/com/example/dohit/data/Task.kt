@@ -8,8 +8,8 @@ data class Task(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
     val description: String,
-    val dueDate: String,
-    val priority: Int,
+    val category: TaskCategory,
+    val lastModifiedDate: String,
     val imageUri: String? = null,
-    val folderName: String
+    val isCompleted: Boolean
 )

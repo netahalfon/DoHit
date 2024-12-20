@@ -4,5 +4,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="due_date">Due: %s</string>
     <string name="task_board">Task Board</string>
+    <string name="task_description">Task Description</string>
+    <string name="enter_task_description">Enter task description</string>
+    <string name="task_category">Task Category</string>
+    <string name="enter_task_name">Enter task name</string>
+    <string name="taskTitle">Task Name</string>
+    <string name="task_completed">Task Completed</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="save_task">Save Task</string>
+    <string name="task_image">Task Image</string>
+    <string name="task_image_description">Task Image</string>
+    <string name="error_empty_fields">There are empty fields, please enter values</string>
 
 </resources>

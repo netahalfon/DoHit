@@ -44,10 +44,10 @@ class TaskListFragment : Fragment() {
         // טעינת משימות לפי התיקייה
         folderName?.let {
             Log.d("TaskListFragment", "Loading tasks for folder: $it")
-            viewModel.getTasksByFolder(it).observe(viewLifecycleOwner) { tasks ->
+            viewModel.getTasksByCategory(it).observe(viewLifecycleOwner) { tasks ->
                 Log.d("TaskListFragment", "Tasks loaded for $it: ${tasks.size}")
                 tasks.forEach { task ->
-                    Log.d("TaskListFragment", "Task: ${task.title}, Folder: ${task.folderName}")
+                    Log.d("TaskListFragment", "Task: ${task.title}, Folder: ${task.category}")
                 }
                 taskAdapter.updateTasks(tasks)
             }

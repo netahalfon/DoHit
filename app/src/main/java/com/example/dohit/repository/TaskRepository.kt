@@ -14,7 +14,7 @@ class TaskRepository(private val taskDao: TaskDao) {
     suspend fun deleteTask(task: Task) {
         taskDao.deleteTask(task)
     }
-    fun getTasksByFolder(folderName: String): LiveData<List<Task>> {
+    fun getTasksByCategory(folderName: String): LiveData<List<Task>> {
         return taskDao.getTasksByFolder(folderName)
     }
 
