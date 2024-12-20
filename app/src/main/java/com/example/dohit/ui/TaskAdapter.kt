@@ -1,7 +1,7 @@
 package com.example.dohit.ui
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dohit.data.Task
@@ -35,6 +35,7 @@ class TaskAdapter(private var tasks: List<Task>, private val onTaskClick: (Task)
     override fun getItemCount() = tasks.size
 
     fun updateTasks(newTasks: List<Task>) {
+        Log.d("TaskAdapter", "Updating tasks: ${newTasks.size}")
         tasks = newTasks
         notifyDataSetChanged()
     }

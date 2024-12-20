@@ -99,7 +99,7 @@ class AddEditTaskFragment : Fragment() {
                     description = description,
                     lastModifiedDate = currentDate,
                     category = TaskCategory.valueOf(category),
-                    isCompleted = false,
+                    isCompleted = isCompleted,
                     imageUri = selectedImageUri
                 )
 
@@ -110,7 +110,7 @@ class AddEditTaskFragment : Fragment() {
                     description = description,
                     lastModifiedDate = currentDate,
                     category = TaskCategory.valueOf(category),
-                    isCompleted = false,
+                    isCompleted = isCompleted,
                     imageUri = selectedImageUri
                 )
             }
@@ -128,6 +128,3 @@ class AddEditTaskFragment : Fragment() {
         _binding = null
     }
 }
-
-
-
