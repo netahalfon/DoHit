@@ -60,6 +60,22 @@
     </fragment>
 
     <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.dohit.ui.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.dohit.ui.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+
+    </fragment>
+
+    <fragment
         android:id="@+id/taskListFragment"
         android:name="com.example.dohit.ui.TaskListFragment"
         android:label="TaskListFragment"
