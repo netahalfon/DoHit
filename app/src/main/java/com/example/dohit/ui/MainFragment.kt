@@ -47,14 +47,9 @@ class MainFragment : Fragment() {
             taskAdapter.updateTasks(tasks)
         }
 
-        // Floating Action Button: Add Task
-        binding.addTaskButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_addEditTaskFragment)
-        }
 
-        binding.linearLayoutMyTasks.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_taskFragment)
-        }
+
+
 
     }
 
