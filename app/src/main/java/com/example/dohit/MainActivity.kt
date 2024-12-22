@@ -1,6 +1,7 @@
 package com.example.dohit
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+// keep the size off the + button
+        binding.addTaskButton.size = FloatingActionButton.SIZE_NORMAL
+        binding.addTaskButton.visibility = View.VISIBLE
 
         // הגדרת NavController
         val navHostFragment = supportFragmentManager
