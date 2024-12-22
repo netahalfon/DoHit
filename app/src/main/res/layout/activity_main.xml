@@ -177,6 +177,8 @@
             android:src="@drawable/float_icon"
             app:backgroundTint="@color/dark_purple"
             app:layout_anchor="@id/bottomAppBar"
+            app:layout_anchorGravity="center"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
             app:maxImageSize="20dp"
             app:tint="@color/white"
             tools:ignore="SpeakableTextPresentCheck" />
