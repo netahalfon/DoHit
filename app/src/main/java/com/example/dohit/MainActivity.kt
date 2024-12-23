@@ -28,6 +28,21 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.addEditTaskFragment,
+                R.id.taskDetailsFragment,
+                R.id.taskListFragment -> { // מסכים נוספים להסתיר בהם את ה-Bar
+                    binding.bottomAppBar.visibility = View.GONE
+                    binding.addTaskButton.visibility = View.GONE
+                }
+                else -> { // מסכים שבהם ה-Bar צריך להופיע
+                    binding.bottomAppBar.visibility = View.VISIBLE
+                    binding.addTaskButton.visibility = View.VISIBLE
+                }
+            }
+        }
+
         // pass to my task fragment
         binding.linearLayoutMyTasks.setOnClickListener {
             if (navController.currentDestination?.id != R.id.taskFragment) {
