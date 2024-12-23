@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.dohit.data.Task
 import com.example.dohit.data.TaskCategory
@@ -42,5 +43,22 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         }
         return tasks
     }
+    private val _completedTasksCount = MutableLiveData<Int>()
+    val completedTasksCount: LiveData<Int> get() = _completedTasksCount
+
+    private val _activeTasksCount = MutableLiveData<Int>()
+    val activeTasksCount: LiveData<Int> get() = _activeTasksCount
+
+    fun updateTaskCounts(tasks: List<Task>) {
+        _completedTasksCount.value = tasks.count { it.isCompleted }
+        _activeTasksCount.value = tasks.count { !it.isCompleted }
+    }
+
+    init {
+        allTasks.observeForever { tasks ->
+            updateTaskCounts(tasks)
+        }
+    }
+
 
 }

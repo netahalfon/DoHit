@@ -102,7 +102,7 @@
                     app:layout_constraintTop_toTopOf="@+id/completed_tasks_img" />
 
                 <TextView
-                    android:id="@+id/total_tasks_txt"
+                    android:id="@+id/totalTasksTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="76"
@@ -147,7 +147,7 @@
                     app:layout_constraintTop_toTopOf="@+id/ongoing_tasks_img" />
 
                 <TextView
-                    android:id="@+id/ongoing_tasks_amount"
+                    android:id="@+id/ongoingTasksAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="76"
