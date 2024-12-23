@@ -10,7 +10,7 @@
         android:id="@+id/taskTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Task Title"
+        android:text="@string/task_title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +20,7 @@
         android:id="@+id/taskDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Task Description"
+        android:text="@string/task_description1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/taskTitle"
         app:layout_constraintEnd_toEndOf="parent" />

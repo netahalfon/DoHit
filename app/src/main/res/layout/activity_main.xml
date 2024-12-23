@@ -46,6 +46,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/home_icon"
                         app:srcCompat="@drawable/home" />
 
                     <TextView
@@ -53,7 +54,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Home"
+                        android:text="@string/home"
                         android:textAlignment="center"
                         android:textColor="@color/dark_purple"
                         android:textSize="12sp" />
@@ -73,6 +74,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/settings_home_icon"
                         app:srcCompat="@drawable/settings" />
 
                     <TextView
@@ -80,7 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Settings"
+                        android:text="@string/settings"
                         android:textAlignment="center"
                         android:textColor="@color/dark_purple"
                         android:textSize="12sp" />
@@ -127,6 +129,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/my_tasks_home_icon"
                         app:srcCompat="@drawable/checklist" />
 
                     <TextView
@@ -134,7 +137,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="My Tasks"
+                        android:text="@string/my_tasks"
                         android:textAlignment="center"
                         android:textColor="@color/dark_purple"
                         android:textSize="12sp" />
@@ -154,6 +157,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/prof_home_pic"
                         app:srcCompat="@drawable/profile_icon" />
 
                     <TextView
@@ -161,7 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Profile"
+                        android:text="@string/profile_home"
                         android:textAlignment="center"
                         android:textColor="@color/dark_purple"
                         android:textSize="12sp" />

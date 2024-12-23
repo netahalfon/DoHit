@@ -15,5 +15,35 @@
     <string name="task_image">Task Image</string>
     <string name="task_image_description">Task Image</string>
     <string name="error_empty_fields">There are empty fields, please enter values</string>
+    <string name="profile">Profile</string>
+    <string name="user_name">User Name</string>
+    <string name="future_mail">Future Mail…</string>
+    <string name="tasks_completed">Tasks Completed:</string>
+    <string name="ongoing_tasks">Ongoing Tasks:</string>
+    <string name="highest_streak">Highest Streak:</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="my_tasks">My Tasks</string>
+    <string name="profile_home">Profile</string>
+    <string name="prof_home_pic">prof_home_pic</string>
+    <string name="my_tasks_home_icon">my_tasks_home_icon</string>
+    <string name="settings_home_icon">settings_home_icon</string>
+    <string name="home_icon" />
+    <string name="username">Hi, Idan!</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="welcome">Welcome</string>
+    <string name="let_s_schedule_your_nprojects">Let\'s Schedule your\nprojects</string>
+    <string name="ongoing_project">Ongoing Project</string>
+    <string name="educationc">Education</string>
+    <string name="folder_image">Folder Image</string>
+    <string name="hobbies">Hobbies</string>
+    <string name="sport">Sport</string>
+    <string name="work">Work</string>
+    <string name="money">Money</string>
+    <string name="urgent">Urgent!</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_description1">Task Description</string>
 
 </resources>

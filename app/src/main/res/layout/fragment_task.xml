@@ -111,7 +111,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="Education"
+                                android:text="@string/educationc"
                                 android:textColor="@color/dark_purple"
                                 android:textSize="16sp"
                                 android:gravity="center" />
@@ -149,14 +149,14 @@
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
                                     android:layout_gravity="center"
-                                    android:contentDescription="Folder Image"
+                                    android:contentDescription="@string/folder_image"
                                     android:src="@drawable/paint_palette" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="Hobbies"
+                                    android:text="@string/hobbies"
                                     android:textColor="@color/dark_purple"
                                     android:textSize="16sp"
                                     android:gravity="center" />
@@ -209,7 +209,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
                                     android:gravity="center"
-                                    android:text="Sport"
+                                    android:text="@string/sport"
                                     android:textColor="@color/dark_purple"
                                     android:textSize="16sp" />
                             </LinearLayout>
@@ -252,7 +252,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="Work"
+                                    android:text="@string/work"
                                     android:textColor="@color/dark_purple"
                                     android:textSize="16sp"
                                     android:gravity="center" />
@@ -305,7 +305,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="Money"
+                                    android:text="@string/money"
                                     android:textColor="@color/dark_purple"
                                     android:textSize="16sp"
                                     android:gravity="center" />
@@ -349,7 +349,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
                                     android:gravity="center"
-                                    android:text="Urgent!"
+                                    android:text="@string/urgent"
                                     android:textColor="@color/dark_purple"
                                     android:textSize="16sp" />
                             </LinearLayout>
