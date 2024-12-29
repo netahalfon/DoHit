@@ -32,7 +32,7 @@
     <string name="good_morning">בוקר טוב</string>
     <string name="welcome">ברוך הבא</string>
     <string name="let_s_schedule_your_nprojects">בוא נתכנן את\nהפרויקטים שלך</string>
-    <string name="ongoing_project">פרויקט פעיל</string>
+    <string name="ongoing_project">המשימות שלי</string>
     <string name="educationc">חינוך</string>
     <string name="folder_image">תמונת תיקיה</string>
     <string name="hobbies">תחביבים</string>
@@ -44,4 +44,8 @@
     <string name="delete">מחק</string>
     <string name="task_title">כותרת משימה</string>
     <string name="task_description1">תיאור משימה</string>
+    <string name="task_header">צור משימה חדשה</string>
+    <string name="back_button">כפתור חזור \n</string>
+    <string name="category">קטגוריה: %1$s</string>
+
 </resources>

@@ -5,10 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dohit.R
+import com.example.dohit.data.TaskCategory
 import com.example.dohit.databinding.FragmentTaskListBinding
 import com.example.dohit.viewmodel.TaskViewModel
 
@@ -24,6 +28,33 @@ class TaskListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTaskListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // הגדרת כפתור חזור
+        val backButton = view.findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
+        // הצגת שם הקטגוריה בכותרת
+        val categoryTitle = view.findViewById<TextView>(R.id.taskCategoryTitle)
+        val folderName = arguments?.let {
+            TaskListFragmentArgs.fromBundle(it).folderName
+        }
+
+// המרת שם הקטגוריה לשפה המקומית
+        val localizedCategoryName = TaskCategory.entries
+            .find { it.displayName == folderName }
+            ?.getLocalizedDisplayName()
+            ?: ""
+
+// עדכון הכותרת
+        categoryTitle.text = localizedCategoryName
+
 
         // הגדרת RecyclerView
         taskAdapter = TaskAdapter(emptyList()) { task ->
@@ -35,30 +66,16 @@ class TaskListFragment : Fragment() {
             adapter = taskAdapter
         }
 
-        // קבלת שם התיקייה מהארגומנט
-        val folderName = arguments?.let {
-            TaskListFragmentArgs.fromBundle(it).folderName
-        }
-        Log.d("TaskListFragment", "FolderName received: $folderName")
-
-        // טעינת משימות לפי התיקייה
-        folderName?.let {
-            Log.d("TaskListFragment", "Loading tasks for folder: $it")
-            viewModel.getTasksByCategory(it).observe(viewLifecycleOwner) { tasks ->
-                Log.d("TaskListFragment", "Tasks loaded for $it: ${tasks.size}")
-                tasks.forEach { task ->
-                    Log.d("TaskListFragment", "Task: ${task.title}, Folder: ${task.category}")
-                }
+        // טעינת משימות לפי הקטגוריה
+        if (folderName != null) {
+            viewModel.getTasksByCategory(folderName).observe(viewLifecycleOwner) { tasks ->
                 taskAdapter.updateTasks(tasks)
             }
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

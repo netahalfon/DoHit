@@ -19,39 +19,56 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/textView"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/username"
-                android:textColor="@color/dark_purple"
-                android:textSize="28sp" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/good_morning"
-                android:textColor="@color/dark_purple"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/editTextText"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/edittext_bg"
-                android:drawableStart="@drawable/search"
-                android:drawablePadding="16dp"
-                android:ems="10"
-                android:inputType="text"
                 android:padding="16dp"
-                android:text="Search"
-                android:textColor="@color/dark_purple"
-                android:textColorHint="@color/dark_purple" />
+                >
+
+                <!-- כותרת ראשית -->
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/username"
+                    android:textColor="@color/dark_purple"
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- תת-כותרת -->
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good_morning"
+                    android:textColor="@color/dark_purple"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView"
+                    android:layout_marginTop="8dp" />
+
+                <!-- שדה חיפוש -->
+                <EditText
+                    android:id="@+id/editTextText"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/card_bg"
+                    android:drawableStart="@drawable/search"
+                    android:drawablePadding="16dp"
+                    android:hint="Search"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="@color/dark_purple"
+                    android:textColorHint="@color/dark_purple"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView2"
+                    android:layout_marginTop="16dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -102,7 +119,7 @@
 
                 <TextView
                     android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/ongoing_project"
