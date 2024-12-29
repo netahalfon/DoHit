@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- שכבת הרקע הכחולה -->
+    <item android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#1E3A8A" /> <!-- צבע כחול -->
+        </shape>
+    </item>
+
+    <!-- שכבת הרקע הלבנה עם פינות מעוגלות -->
+    <item android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" /> <!-- צבע לבן -->
+            <corners android:topLeftRadius="32dp" android:topRightRadius="32dp" />
+        </shape>
+    </item>
+</layer-list>
