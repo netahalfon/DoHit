@@ -32,9 +32,10 @@ class TaskFragment : Fragment() {
         _binding = FragmentTaskBinding.inflate(inflater, container, false)
 
         // תאריך נוכחי
-        val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+        val sdf = SimpleDateFormat("EEE, MMM dd", Locale.getDefault())
         val currentDate = sdf.format(Date())
         binding.dateTextView.text = currentDate
+
 
         // רשימת ה-ImageView ורשימת התמונות (סטטיות ו-GIFים)
         val imageViews = listOf(
@@ -44,8 +45,7 @@ class TaskFragment : Fragment() {
             binding.imageView4,
             binding.imageView5,
             binding.imageView6,
-            binding.imageView7
-        )
+            )
 
         val gifResources = listOf(
             R.drawable.mortarboard, // קובצי GIF

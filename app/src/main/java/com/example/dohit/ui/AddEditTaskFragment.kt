@@ -1,11 +1,17 @@
 package com.example.dohit.ui
 
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -20,7 +26,9 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
+import java.io.File
 
 class AddEditTaskFragment : Fragment() {
 
@@ -33,9 +41,35 @@ class AddEditTaskFragment : Fragment() {
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            binding.imageTask.setImageURI(it)
-            selectedImageUri = it.toString() // Save the selected image URI
+            try {
+                val inputStream = requireContext().contentResolver.openInputStream(it)
+                val file = File(requireContext().cacheDir, "task_image_${System.currentTimeMillis()}.jpg")
+                file.outputStream().use { outputStream ->
+                    inputStream?.copyTo(outputStream)
+                }
+                selectedImageUri = file.absolutePath
+                binding.imageTask.setImageBitmap(BitmapFactory.decodeFile(selectedImageUri))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
+    }
+
+    private fun showAnimatedToast(message: String) {
+        // יצירת Layout מותאם אישית
+        val inflater = LayoutInflater.from(requireContext())
+        val layout: View = inflater.inflate(R.layout.custom_toast_with_animation, null)
+
+        // הגדרת הטקסט של ההודעה
+        val toastText = layout.findViewById<TextView>(R.id.toast_text)
+        toastText.text = message
+
+        // יצירת Toast מותאם אישית
+        val toast = Toast(requireContext())
+        toast.view = layout
+        toast.duration = Toast.LENGTH_LONG
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
     }
 
     override fun onCreateView(
@@ -50,7 +84,11 @@ class AddEditTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Setting up spinner data
-        val categoryList: List<String> = TaskCategory.entries.map { it.displayName }
+        val categoryList: List<String> = TaskCategory.entries.map { it.getLocalizedDisplayName() }
+        val backButton = view.findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
+            requireActivity().onBackPressed() // חזרה למסך הקודם
+        }
         val spinnerAdapter = ArrayAdapter(requireContext(), com.google.android.material.R.layout.support_simple_spinner_dropdown_item, categoryList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCategory.adapter = spinnerAdapter
@@ -64,7 +102,7 @@ class AddEditTaskFragment : Fragment() {
                 task?.let {
                     binding.editTaskName.setText(it.title)
                     binding.editTaskDescription.setText(it.description)
-                    binding.spinnerCategory.setSelection(categoryList.indexOf(it.category.displayName))
+                    binding.spinnerCategory.setSelection(categoryList.indexOf(it.category.getLocalizedDisplayName()))
                     binding.checkboxStatus.isChecked = it.isCompleted
                     binding.imageTask.setImageURI(Uri.parse(it.imageUri))
                     selectedImageUri = it.imageUri
@@ -85,43 +123,65 @@ class AddEditTaskFragment : Fragment() {
             val isCompleted = binding.checkboxStatus.isChecked
 
             // Validate inputs
-            if (title.isEmpty() || description.isEmpty() || category.isEmpty() || selectedImageUri == null) {
+            if (title.isEmpty() || description.isEmpty() || category.isEmpty()) {
                 Toast.makeText(requireContext(), R.string.error_empty_fields, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
             val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 .format(Calendar.getInstance().time)
 
-            val task:Task
-            if (taskId == -1) {//יצירת מטלה חדשה (נשלח בלי ID כדי שיקבל אוטומטי)
+            val task: Task
+            if (taskId == -1) { // יצירת מטלה חדשה
                 task = Task(
                     title = title,
                     description = description,
                     lastModifiedDate = currentDate,
-                    category = TaskCategory.valueOf(category),
+                    category = TaskCategory.entries.find { it.getLocalizedDisplayName() == category } ?: TaskCategory.Work,
                     isCompleted = isCompleted,
                     imageUri = selectedImageUri
                 )
-
-            }else {//עריכת מטלה
+            } else { // עריכת מטלה
                 task = Task(
                     id = taskId,
                     title = title,
                     description = description,
                     lastModifiedDate = currentDate,
-                    category = TaskCategory.valueOf(category),
+                    category = TaskCategory.entries.find { it.getLocalizedDisplayName() == category } ?: TaskCategory.Work,
                     isCompleted = isCompleted,
                     imageUri = selectedImageUri
                 )
             }
 
-            // שמירה במסד הנתונים
-            lifecycleScope.launch {
-                taskViewModel.insertTask(task)
-                findNavController().popBackStack()
-            }
+            // הצגת GIF בעת לחיצה
+            binding.saveButton.setImageResource(R.drawable.add) // החלף ב-GIF המתאים
+            Glide.with(this)
+                .asGif()
+                .load(R.drawable.add)
+                .into(binding.saveButton)
 
+            // עיכוב עד לסיום ה-GIF
+            Handler(Looper.getMainLooper()).postDelayed({
+                // שמירה במסד הנתונים
+                lifecycleScope.launch {
+                    taskViewModel.insertTask(task)
+                    findNavController().popBackStack()
+
+                    // הצגת הטוסט המותאם אישית עם אנימציה
+                    val message = if (Locale.getDefault().language == "he") {
+                        "משימה נשמרה בהצלחה!"
+                    } else {
+                        "Task saved successfully!"
+                    }
+                    showAnimatedToast(message)
+
+                    // החזרת הכפתור לתמונה המקורית
+                    binding.saveButton.setImageResource(R.drawable.add) // תמונה סטטית
+                }
+            }, 3000) // משך זמן ה-GIF במילישניות
         }
+
+
     }
     override fun onDestroyView() {
         super.onDestroyView()

@@ -45,5 +45,10 @@
     <string name="delete">Delete</string>
     <string name="task_title">Task Title</string>
     <string name="task_description1">Task Description</string>
+    <string name="task_header">Create New Task</string>
+    <string name="back_button">back button \n</string>
+    <string name="category">Category: %1$s</string>
+    <string name="error_image_not_found">Image Not Found!</string>
+
 
 </resources>

@@ -6,4 +6,6 @@
     <color name="AddTaskButton">#90E0EF</color>
     <color name="dark_purple">#333399</color>
     <color name="light_purple">#F1EBFD</color>
+    <color name="turquoise">#bbfcf9</color>
+
 </resources>

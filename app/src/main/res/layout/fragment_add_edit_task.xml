@@ -4,24 +4,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <!-- קונטיינר עליון -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="150dp"
+            android:background="@color/dark_purple"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- חץ חזור -->
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_back_arrow"
+                android:contentDescription="@string/back_button"
+                android:background="@null"
+                android:layout_marginStart="16dp" />
+
+            <!-- כותרת -->
+            <TextView
+                android:id="@+id/top_text"
+                android:layout_width="281dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/task_header"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+
+
+    <!-- תוכן טופס -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/rounded_background">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/taskTitle"
+                android:textColor="@color/dark_purple"
+                android:textStyle="bold"
                 android:textSize="16sp"
+                android:paddingTop="40dp"
                 android:layout_marginBottom="8dp" />
 
             <EditText
                 android:id="@+id/edit_task_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="12dp"
                 android:autofillHints=""
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:hint="@string/enter_task_name"
                 android:inputType="text"
                 android:minHeight="48dp" />
@@ -31,6 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/task_description"
+                android:textColor="@color/dark_purple"
+                android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp" />
@@ -42,7 +91,11 @@
                 android:autofillHints=""
                 android:hint="@string/enter_task_description"
                 android:inputType="textMultiLine"
-                android:minHeight="48dp" />
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:minHeight="48dp"
+                android:background="@drawable/edittext_bg"
+                android:padding="12dp"/>
 
             <!-- קטגוריה -->
             <TextView
@@ -50,13 +103,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/task_category"
                 android:textSize="16sp"
+                android:textColor="@color/dark_purple"
+                android:textStyle="bold"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp" />
 
             <Spinner
                 android:id="@+id/spinner_category"
                 android:layout_width="match_parent"
+                android:background="@drawable/edittext_bg"
+                android:padding="12dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:minHeight="48dp" />
 
             <!-- סטטוס משימה -->
@@ -65,36 +123,67 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/task_completed"
+                android:textColor="@color/dark_purple"
+                android:textStyle="bold"
                 android:layout_marginTop="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/task_image"
+                android:textColor="@color/dark_purple"
+                android:textStyle="bold"
                 android:layout_marginTop="16dp"
                 android:textSize="16sp" />
+
             <ImageView
                 android:id="@+id/image_task"
                 android:layout_width="match_parent"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@drawable/edittext_bg"
                 android:layout_height="200dp"
                 android:contentDescription="@string/task_image_description"
-                android:scaleType="centerCrop"
-                android:background="#DDDDDD"
                 android:layout_marginTop="8dp" />
-            <Button
-                android:id="@+id/button_upload_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/upload_image"
-                android:layout_marginTop="8dp" />
+
 
             <!-- כפתור שמירה -->
-            <Button
-                android:id="@+id/saveButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save_task"
-                android:layout_marginTop="24dp" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="22dp">
+
+                <ImageButton
+                    android:id="@+id/button_upload_image"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/add_image"
+                    android:scaleType="centerInside"
+                    android:background="@null"
+                    android:contentDescription="@string/upload_image" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="12dp">
+
+                <ImageButton
+                    android:id="@+id/saveButton"
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:src="@drawable/add"
+                    android:scaleType="centerInside"
+                    android:background="@null"
+                    android:contentDescription="@string/upload_image" />
+            </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
 </ScrollView>

@@ -30,9 +30,9 @@
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/profile"
+                    android:layout_width="137dp"
+                    android:layout_height="119dp"
+                    android:src="@drawable/prof_img1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
