@@ -16,11 +16,14 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: TaskRepository
     val allTasks: LiveData<List<Task>>
+    val incompleteTasks: LiveData<List<Task>>
 
     init {
         val dao = TaskDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(dao)
         allTasks = repository.allTasks
+        incompleteTasks = repository.getIncompleteTasks()
+
     }
 
     fun insertTask(task: Task) = viewModelScope.launch {
@@ -30,10 +33,7 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteTask(task: Task) = viewModelScope.launch {
         repository.deleteTask(task)
     }
-    fun addSampleTasks() = viewModelScope.launch {
-        repository.insertTask(Task(title = "Sample Task 1", description = "Description 1", lastModifiedDate = "2024-12-31", category = TaskCategory.Work, isCompleted = false))
-        repository.insertTask(Task(title = "Sample Task 2", description = "Description 2", lastModifiedDate = "2024-12-25",category = TaskCategory.Sport, isCompleted = true))
-    }
+
     fun getTasksByCategory(category: String): LiveData<List<Task>> {
         val tasks = repository.getTasksByCategory(category)
         tasks.observeForever { taskList ->
@@ -58,6 +58,27 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         allTasks.observeForever { tasks ->
             updateTaskCounts(tasks)
         }
+    }
+    fun getCompletionPercentageByCategory(category: TaskCategory): LiveData<Int> {
+        val completionPercentage = MutableLiveData<Int>()
+        allTasks.observeForever { tasks ->
+            val totalTasks = tasks.filter { it.category == category }.size
+            val completedTasks = tasks.filter { it.category == category && it.isCompleted }.size
+            val percentage = if (totalTasks > 0) (completedTasks * 100 / totalTasks) else 0
+            completionPercentage.value = percentage
+        }
+        return completionPercentage
+    }
+
+    fun getTaskStatisticsByCategory(category: TaskCategory): LiveData<Pair<Int, Int>> {
+        return repository.getTaskStatisticsByCategory(category)
+    }
+
+    private val _selectedCategory = MutableLiveData<TaskCategory>()
+    val selectedCategory: LiveData<TaskCategory> get() = _selectedCategory
+
+    fun setSelectedCategory(category: TaskCategory) {
+        _selectedCategory.value = category
     }
 
 

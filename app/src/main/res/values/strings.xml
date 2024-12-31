@@ -49,6 +49,18 @@
     <string name="back_button">back button \n</string>
     <string name="category">Category: %1$s</string>
     <string name="error_image_not_found">Image Not Found!</string>
-
+    <string name="search">Search</string>
+    <string name="english">English</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="notification">Notification</string>
+    <string name="edit_profile_picture">Edit Profile picture</string>
+    <string name="edit_email">Edit Email</string>
+    <string name="edit_user_name">Edit User Name</string>
+    <string name="unknown_category">Unknown Category</string>
+    <string name="unknown_category_he">קטגוריה לא ידועה</string>
+    <string name="delete_task">Delete task</string>
+    <string name="delete_confirmation">Are you sure toy want to delete this task?</string>
+    <string name="cancel">Cancel</string>
+    <string name="category_image">Category Image</string>
 
 </resources>

@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dohit.R
 import com.example.dohit.data.TaskCategory
 import com.example.dohit.databinding.FragmentTaskListBinding
+import com.example.dohit.utils.setupButtonWithAnimation
 import com.example.dohit.viewmodel.TaskViewModel
+import java.util.Locale
 
 class TaskListFragment : Fragment() {
 
@@ -36,9 +38,11 @@ class TaskListFragment : Fragment() {
 
         // הגדרת כפתור חזור
         val backButton = view.findViewById<ImageButton>(R.id.backButton)
-        backButton.setOnClickListener {
-            requireActivity().onBackPressed()
+
+        setupButtonWithAnimation(backButton) {
+            requireActivity().onBackPressed() // חזרה למסך הקודם
         }
+
 
         // הצגת שם הקטגוריה בכותרת
         val categoryTitle = view.findViewById<TextView>(R.id.taskCategoryTitle)
@@ -47,11 +51,15 @@ class TaskListFragment : Fragment() {
         }
 
 // המרת שם הקטגוריה לשפה המקומית
-        val localizedCategoryName = TaskCategory.entries
-            .find { it.displayName == folderName }
-            ?.getLocalizedDisplayName()
-            ?: ""
+        val category = TaskCategory.entries.find { it.displayName == folderName }
+        val localizedCategoryName = category?.getLocalizedDisplayName(Locale.getDefault().language)
+            ?: if (Locale.getDefault().language == "he") {
+                getString(R.string.unknown_category_he)
+            } else {
+                getString(R.string.unknown_category)
+            }
 
+        binding.taskCategoryTitle.text = localizedCategoryName
 // עדכון הכותרת
         categoryTitle.text = localizedCategoryName
 
@@ -68,10 +76,14 @@ class TaskListFragment : Fragment() {
 
         // טעינת משימות לפי הקטגוריה
         if (folderName != null) {
-            viewModel.getTasksByCategory(folderName).observe(viewLifecycleOwner) { tasks ->
-                taskAdapter.updateTasks(tasks)
-            }
+            val category = TaskCategory.entries.find { it.displayName == folderName || it.displayNameHebrew == folderName }
+            category?.let {
+                viewModel.getTasksByCategory(it.displayName).observe(viewLifecycleOwner) { tasks ->
+                    taskAdapter.updateTasks(tasks)
+                }
+            } ?: Log.e("TaskListFragment", "Category not found for folderName: $folderName")
         }
+
     }
 
     override fun onDestroyView() {

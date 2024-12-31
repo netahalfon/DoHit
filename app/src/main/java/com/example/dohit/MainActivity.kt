@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 
-import androidx.navigation.ui.NavigationUI
 import com.example.dohit.databinding.ActivityMainBinding
-import com.google.android.material.bottomappbar.BottomAppBar
+import com.example.dohit.utils.setupButtonWithAnimation
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -43,29 +41,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // pass to my task fragment
-        binding.linearLayoutMyTasks.setOnClickListener {
+// My Tasks Button
+        setupButtonWithAnimation(binding.linearLayoutMyTasks) {
             if (navController.currentDestination?.id != R.id.taskFragment) {
                 navController.navigate(R.id.taskFragment)
             }
         }
 
-        //pass to setting fragment
-        binding.linearLayoutSettings.setOnClickListener {
+// Settings Button
+        setupButtonWithAnimation(binding.linearLayoutSettings) {
             if (navController.currentDestination?.id != R.id.settingsFragment) {
                 navController.navigate(R.id.settingsFragment)
             }
         }
 
-        //pass to profile fragment
-        binding.linearLayoutProfile.setOnClickListener {
+// Profile Button
+        setupButtonWithAnimation(binding.linearLayoutProfile) {
             if (navController.currentDestination?.id != R.id.profileFragment) {
                 navController.navigate(R.id.profileFragment)
             }
         }
 
-        //מעבר לfragment main
-        binding.linearLayoutHome.setOnClickListener {
+// Home Button
+        setupButtonWithAnimation(binding.linearLayoutHome) {
             if (navController.currentDestination?.id != R.id.main) {
                 navController.navigate(R.id.mainFragment)
             }
@@ -73,11 +71,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        // Floating Action Button: Add Task
-        binding.addTaskButton.setOnClickListener {
+        setupButtonWithAnimation(binding.addTaskButton) {
             navController.navigate(R.id.addEditTaskFragment)
         }
-
 
 
     }

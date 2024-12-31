@@ -30,7 +30,7 @@
     <string name="home_icon" />
     <string name="username">שלום, עידן!</string>
     <string name="good_morning">בוקר טוב</string>
-    <string name="welcome">ברוך הבא</string>
+    <string name="welcome">ברוך.ה הבא.ה</string>
     <string name="let_s_schedule_your_nprojects">בוא נתכנן את\nהפרויקטים שלך</string>
     <string name="ongoing_project">המשימות שלי</string>
     <string name="educationc">חינוך</string>
@@ -47,5 +47,14 @@
     <string name="task_header">צור משימה חדשה</string>
     <string name="back_button">כפתור חזור \n</string>
     <string name="category">קטגוריה: %1$s</string>
-
+    <string name="search">חיפוש</string>
+    <string name="english">אנגלית</string>
+    <string name="dark_mode">מצב לילה</string>
+    <string name="notification">התראות</string>
+    <string name="edit_profile_picture">ערוך תמונה</string>
+    <string name="edit_email">ערוך מייל</string>
+    <string name="edit_user_name">ערוך שם משתמש</string>
+    <string name="delete_task">מחיקת משימה</string>
+    <string name="delete_confirmation">האם אתה בטוח שברצונך למחוק משימה זו?</string>
+    <string name="cancel">ביטול</string>
 </resources>
