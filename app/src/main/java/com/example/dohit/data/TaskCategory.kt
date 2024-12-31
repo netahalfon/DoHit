@@ -3,14 +3,18 @@ package com.example.dohit.data
 import java.util.Locale
 
 enum class TaskCategory(val displayName: String, val displayNameHebrew: String) {
-    Hobbies("Hobbies", "תחביבים"),
     Education("Education", "חינוך"),
-    Work("Work", "עבודה"),
+    Hobbies("Hobbies", "תחביבים"),
     Sport("Sport", "ספורט"),
-    Urgent("Urgent", "דחוף"),
-    Money("Money", "כסף");
+    Work("Work", "עבודה"),
+    Money("Money", "כסף"),
+    Urgent("Urgent", "דחוף");
 
     fun getLocalizedDisplayName(locale: String = Locale.getDefault().language): String {
         return if (locale == "he") displayNameHebrew else displayName
     }
+
 }
+
+
+

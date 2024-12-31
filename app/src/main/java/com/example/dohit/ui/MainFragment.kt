@@ -43,7 +43,7 @@ class MainFragment : Fragment() {
         taskAdapter.also { binding.taskRecyclerView.adapter = it }
 
         // Observe tasks
-        taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+        taskViewModel.incompleteTasks.observe(viewLifecycleOwner) { tasks ->
             taskAdapter.updateTasks(tasks)
         }
 

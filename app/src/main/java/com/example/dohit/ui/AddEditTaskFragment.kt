@@ -5,11 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -26,7 +26,10 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.dohit.adapter.CategoryAdapter
+import com.example.dohit.utils.setupButtonWithAnimation
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -72,13 +75,38 @@ class AddEditTaskFragment : Fragment() {
         toast.show()
     }
 
+    private lateinit var categoryAdapter: CategoryAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentAddEditTaskBinding.inflate(inflater, container, false)
+        val binding = _binding!!
+
+        // רשימת הקטגוריות
+        val categories = TaskCategory.entries
+        Log.d("AddEditTaskFragment", "Categories: ${categories.joinToString { it.getLocalizedDisplayName() }}")
+
+        // הגדרת ה-RecyclerView
+        categoryAdapter = CategoryAdapter(categories) { selectedCategory ->
+            // עדכון הקטגוריה הנבחרת ב-ViewModel
+            taskViewModel.setSelectedCategory(selectedCategory)
+        }
+
+        binding.categoryRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.categoryRecyclerView.adapter = categoryAdapter
+
+        // טעינת הקטגוריה הנבחרת מראש
+        taskViewModel.selectedCategory.observe(viewLifecycleOwner) { category ->
+            categoryAdapter.setSelectedCategory(category)
+        }
+
         return binding.root
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,29 +114,42 @@ class AddEditTaskFragment : Fragment() {
         // Setting up spinner data
         val categoryList: List<String> = TaskCategory.entries.map { it.getLocalizedDisplayName() }
         val backButton = view.findViewById<ImageButton>(R.id.backButton)
-        backButton.setOnClickListener {
+
+        setupButtonWithAnimation(backButton) {
             requireActivity().onBackPressed() // חזרה למסך הקודם
         }
-        val spinnerAdapter = ArrayAdapter(requireContext(), com.google.android.material.R.layout.support_simple_spinner_dropdown_item, categoryList)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerCategory.adapter = spinnerAdapter
+
+
         // קבלת ה-taskId מה-arguments
         taskId = arguments?.getInt("taskId") ?: -1
 
         if (taskId != -1) {
-            // עדכון הטופס כאשר המשימה כבר קיימת
             taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
                 val task = tasks.find { it.id == taskId }
                 task?.let {
+                    Log.d("AddEditTaskFragment", "Selected category: ${it.category.getLocalizedDisplayName()}") // הוספת הלוג כאן
                     binding.editTaskName.setText(it.title)
                     binding.editTaskDescription.setText(it.description)
-                    binding.spinnerCategory.setSelection(categoryList.indexOf(it.category.getLocalizedDisplayName()))
                     binding.checkboxStatus.isChecked = it.isCompleted
-                    binding.imageTask.setImageURI(Uri.parse(it.imageUri))
+                    categoryAdapter.setSelectedCategory(it.category)
+
+                    if (!it.imageUri.isNullOrEmpty()) {
+                        try {
+                            val uri = Uri.parse(it.imageUri)
+                            binding.imageTask.setImageURI(uri)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                            binding.imageTask.setImageResource(R.drawable.add_image)
+                        }
+                    } else {
+                        binding.imageTask.setImageResource(R.drawable.add_image)
+                    }
+
                     selectedImageUri = it.imageUri
                 }
             }
         }
+
 
         //הוספת תמונה למשימה
         binding.buttonUploadImage.setOnClickListener {
@@ -116,14 +157,15 @@ class AddEditTaskFragment : Fragment() {
         }
 
         // לחיצה על כפתור שמירה
+// לחיצה על כפתור שמירה
         binding.saveButton.setOnClickListener {
             val title = binding.editTaskName.text.toString()
             val description = binding.editTaskDescription.text.toString()
-            val category = binding.spinnerCategory.selectedItem.toString()
+            val selectedCategory = categoryAdapter.getSelectedCategory() // קבלת הקטגוריה הנבחרת מה-Adapter
             val isCompleted = binding.checkboxStatus.isChecked
 
             // Validate inputs
-            if (title.isEmpty() || description.isEmpty() || category.isEmpty()) {
+            if (title.isEmpty() || description.isEmpty() || selectedCategory == null) {
                 Toast.makeText(requireContext(), R.string.error_empty_fields, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -137,7 +179,7 @@ class AddEditTaskFragment : Fragment() {
                     title = title,
                     description = description,
                     lastModifiedDate = currentDate,
-                    category = TaskCategory.entries.find { it.getLocalizedDisplayName() == category } ?: TaskCategory.Work,
+                    category = selectedCategory,
                     isCompleted = isCompleted,
                     imageUri = selectedImageUri
                 )
@@ -147,7 +189,7 @@ class AddEditTaskFragment : Fragment() {
                     title = title,
                     description = description,
                     lastModifiedDate = currentDate,
-                    category = TaskCategory.entries.find { it.getLocalizedDisplayName() == category } ?: TaskCategory.Work,
+                    category = selectedCategory,
                     isCompleted = isCompleted,
                     imageUri = selectedImageUri
                 )
@@ -180,6 +222,7 @@ class AddEditTaskFragment : Fragment() {
                 }
             }, 3000) // משך זמן ה-GIF במילישניות
         }
+
 
 
     }

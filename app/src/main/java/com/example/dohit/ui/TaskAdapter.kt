@@ -4,7 +4,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dohit.R
 import com.example.dohit.data.Task
+import com.example.dohit.data.TaskCategory
 import com.example.dohit.databinding.ItemTaskBinding
 
 class TaskAdapter(private var tasks: List<Task>, private val onTaskClick: (Task) -> Unit) :
@@ -16,11 +18,27 @@ class TaskAdapter(private var tasks: List<Task>, private val onTaskClick: (Task)
             binding.taskTitle.text = task.title
             binding.taskDescription.text = task.description
 
+            // קביעת התמונה של הקטגוריה
+            val categoryImageRes = when (task.category) {
+                TaskCategory.Work -> R.drawable.boss
+                TaskCategory.Sport -> R.drawable.cycling
+                TaskCategory.Hobbies -> R.drawable.paint_palette
+                TaskCategory.Education -> R.drawable.mortarboard
+                TaskCategory.Urgent -> R.drawable.warning
+                TaskCategory.Money -> R.drawable.money_bag
+            }
+            binding.categoryImage.setImageResource(categoryImageRes)
+
+            val layoutParams = binding.root.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.setMargins(16, 16, 16, 16) // מרווחים: שמאל, עליון, ימין, תחתון
+            binding.root.layoutParams = layoutParams
+
             binding.root.setOnClickListener {
                 onTaskClick(task)
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val binding =
@@ -39,4 +57,5 @@ class TaskAdapter(private var tasks: List<Task>, private val onTaskClick: (Task)
         tasks = newTasks
         notifyDataSetChanged()
     }
+
 }
