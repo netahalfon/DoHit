@@ -13,15 +13,27 @@
         <!-- פעולה מתקנת -->
         <action
             android:id="@+id/action_mainFragment_to_addEditTaskFragment"
-            app:destination="@id/addEditTaskFragment" />
+            app:destination="@id/addEditTaskFragment"
+            app:enterAnim="@anim/slide_in_fade_in"
+            app:exitAnim="@anim/slide_out_fade_out"
+            app:popEnterAnim="@anim/slide_in_fade_in"
+            app:popExitAnim="@anim/slide_out_fade_out" />
 
         <action
             android:id="@+id/action_mainFragment_to_taskDetailsFragment"
-            app:destination="@id/taskDetailsFragment" />
+            app:destination="@id/taskDetailsFragment"
+            app:enterAnim="@anim/slide_in_fade_in"
+            app:exitAnim="@anim/slide_out_fade_out"
+            app:popEnterAnim="@anim/slide_in_fade_in"
+            app:popExitAnim="@anim/slide_out_fade_out"  />
 
         <action
             android:id="@+id/action_mainFragment_to_taskFragment"
-            app:destination="@id/taskFragment" />
+            app:destination="@id/taskFragment"
+            app:enterAnim="@anim/slide_in_fade_in"
+            app:exitAnim="@anim/slide_out_fade_out"
+            app:popEnterAnim="@anim/slide_in_fade_in"
+            app:popExitAnim="@anim/slide_out_fade_out"  />
 
     </fragment>
 
@@ -43,7 +55,11 @@
         tools:layout="@layout/fragment_task_details">
         <action
             android:id="@+id/action_taskDetailsFragment_to_addEditTaskFragment"
-            app:destination="@id/addEditTaskFragment" />
+            app:destination="@id/addEditTaskFragment"
+            app:enterAnim="@anim/slide_in_fade_in"
+            app:exitAnim="@anim/slide_out_fade_out"
+            app:popEnterAnim="@anim/slide_in_fade_in"
+            app:popExitAnim="@anim/slide_out_fade_out"  />
 
         <argument
             android:name="taskId"
@@ -56,7 +72,11 @@
         tools:layout="@layout/fragment_task">
         <action
             android:id="@+id/action_taskFragment_to_taskListFragment"
-            app:destination="@id/taskListFragment" />
+            app:destination="@id/taskListFragment"
+            app:enterAnim="@anim/slide_in_fade_in"
+            app:exitAnim="@anim/slide_out_fade_out"
+            app:popEnterAnim="@anim/slide_in_fade_in"
+            app:popExitAnim="@anim/slide_out_fade_out" />
     </fragment>
 
     <fragment
@@ -82,7 +102,11 @@
         tools:layout="@layout/fragment_task_list">
         <action
             android:id="@+id/action_taskListFragment_to_taskDetailsFragment"
-            app:destination="@id/taskDetailsFragment" />
+            app:destination="@id/taskDetailsFragment"
+            app:enterAnim="@anim/slide_in_fade_in"
+            app:exitAnim="@anim/slide_out_fade_out"
+            app:popEnterAnim="@anim/slide_in_fade_in"
+            app:popExitAnim="@anim/slide_out_fade_out"  />
         <argument
             android:name="folderName"
             app:argType="string" />

@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
                 findNavController().navigate(R.id.action_mainFragment_to_taskDetailsFragment,bundle)
             },
             onTaskStatusChanged = { taskId, isCompleted ->
-                taskViewModel.updateTaskStatus(taskId, isCompleted) // עדכון סטטוס ב-ViewModel
+                taskViewModel.updateTaskStatus(taskId, isCompleted)
             }
         )
 
