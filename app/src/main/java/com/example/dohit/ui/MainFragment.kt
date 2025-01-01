@@ -38,6 +38,10 @@ class MainFragment : Fragment() {
             tasks = emptyList(),
             onTaskClick = { task ->
                 Log.d("TaskAdapter", "Task clicked: ${task.title}")
+                val bundle = Bundle().apply {
+                    putInt("taskId",task.id)
+                }
+                findNavController().navigate(R.id.action_mainFragment_to_taskDetailsFragment,bundle)
             },
             onTaskStatusChanged = { taskId, isCompleted ->
                 taskViewModel.updateTaskStatus(taskId, isCompleted) // עדכון סטטוס ב-ViewModel
@@ -49,7 +53,7 @@ class MainFragment : Fragment() {
 
 
         // עדכון הרשימה כאשר יש שינויים
-        taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+        taskViewModel.incompleteTasks.observe(viewLifecycleOwner) { tasks ->
             adapter.updateTasks(tasks)
         }
 
