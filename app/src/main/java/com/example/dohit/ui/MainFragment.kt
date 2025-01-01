@@ -46,11 +46,6 @@ class MainFragment : Fragment() {
         taskViewModel.incompleteTasks.observe(viewLifecycleOwner) { tasks ->
             taskAdapter.updateTasks(tasks)
         }
-
-
-
-
-
     }
 
     override fun onDestroyView() {
