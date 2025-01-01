@@ -9,14 +9,18 @@ import com.example.dohit.data.Task
 import com.example.dohit.data.TaskCategory
 import com.example.dohit.databinding.ItemTaskBinding
 
-class TaskAdapter(private var tasks: List<Task>, private val onTaskClick: (Task) -> Unit) :
-    RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(
+    private var tasks: List<Task>,
+    private val onTaskClick: (Task) -> Unit,
+    private val onTaskStatusChanged: (Int, Boolean) -> Unit
+) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.taskTitle.text = task.title
             binding.taskDescription.text = task.description
+            binding.checkboxStatus.isChecked = task.isCompleted
 
             // קביעת התמונה של הקטגוריה
             val categoryImageRes = when (task.category) {
@@ -28,6 +32,11 @@ class TaskAdapter(private var tasks: List<Task>, private val onTaskClick: (Task)
                 TaskCategory.Money -> R.drawable.money_bag
             }
             binding.categoryImage.setImageResource(categoryImageRes)
+
+            // Handle checkbox click
+            binding.checkboxStatus.setOnCheckedChangeListener { _, isChecked ->
+                onTaskStatusChanged(task.id, isChecked)
+            }
 
             val layoutParams = binding.root.layoutParams as ViewGroup.MarginLayoutParams
             layoutParams.setMargins(16, 16, 16, 16) // מרווחים: שמאל, עליון, ימין, תחתון
@@ -49,13 +58,10 @@ class TaskAdapter(private var tasks: List<Task>, private val onTaskClick: (Task)
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(tasks[position])
     }
-
-    override fun getItemCount() = tasks.size
-
     fun updateTasks(newTasks: List<Task>) {
-        Log.d("TaskAdapter", "Updating tasks: ${newTasks.size}")
         tasks = newTasks
         notifyDataSetChanged()
     }
 
+    override fun getItemCount() = tasks.size
 }

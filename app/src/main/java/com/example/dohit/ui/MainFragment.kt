@@ -1,6 +1,7 @@
 package com.example.dohit.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,23 +34,24 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // RecyclerView
-        taskAdapter = TaskAdapter(listOf()) { task ->
-            val bundle = Bundle().apply {
-                putInt("taskId", task.id)
+        val adapter = TaskAdapter(
+            tasks = emptyList(),
+            onTaskClick = { task ->
+                Log.d("TaskAdapter", "Task clicked: ${task.title}")
+            },
+            onTaskStatusChanged = { taskId, isCompleted ->
+                taskViewModel.updateTaskStatus(taskId, isCompleted) // עדכון סטטוס ב-ViewModel
             }
-            findNavController().navigate(R.id.action_mainFragment_to_taskDetailsFragment, bundle)
-        }
+        )
+
+        binding.taskRecyclerView.adapter = adapter
         binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        taskAdapter.also { binding.taskRecyclerView.adapter = it }
 
-        // Observe tasks
-        taskViewModel.incompleteTasks.observe(viewLifecycleOwner) { tasks ->
-            taskAdapter.updateTasks(tasks)
+
+        // עדכון הרשימה כאשר יש שינויים
+        taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+            adapter.updateTasks(tasks)
         }
-
-
-
-
 
     }
 
