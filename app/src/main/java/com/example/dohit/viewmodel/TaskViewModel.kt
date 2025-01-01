@@ -26,6 +26,14 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    //לעדכון הצאק בוקס
+    fun updateTaskStatus(taskId: Int, isCompleted: Boolean) {
+        viewModelScope.launch {
+            repository.updateTaskStatus(taskId, isCompleted)
+        }
+    }
+
+
     fun insertTask(task: Task) = viewModelScope.launch {
         repository.insertTask(task)
     }

@@ -9,6 +9,10 @@ import com.example.dohit.data.TaskDao
 class TaskRepository(private val taskDao: TaskDao) {
     val allTasks: LiveData<List<Task>> = taskDao.getAllTasks()
 
+    suspend fun updateTaskStatus(taskId: Int, isCompleted: Boolean) {
+        taskDao.updateTaskStatus(taskId, isCompleted)
+    }
+
     suspend fun insertTask(task: Task) {
         taskDao.insertTask(task)
     }
