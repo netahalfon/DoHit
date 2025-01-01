@@ -20,6 +20,11 @@ class TaskAdapter(
         fun bind(task: Task) {
             binding.taskTitle.text = task.title
             binding.taskDescription.text = task.description
+
+            // Clear previous listener before setting a new state
+            binding.checkboxStatus.setOnCheckedChangeListener(null)
+
+            // Update checkbox state programmatically
             binding.checkboxStatus.isChecked = task.isCompleted
 
             // קביעת התמונה של הקטגוריה

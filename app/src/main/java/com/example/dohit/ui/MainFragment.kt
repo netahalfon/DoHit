@@ -38,24 +38,24 @@ class MainFragment : Fragment() {
             tasks = emptyList(),
             onTaskClick = { task ->
                 Log.d("TaskAdapter", "Task clicked: ${task.title}")
+                val bundle = Bundle().apply {
+                    putInt("taskId",task.id)
+                }
+                findNavController().navigate(R.id.action_mainFragment_to_taskDetailsFragment,bundle)
             },
             onTaskStatusChanged = { taskId, isCompleted ->
-                taskViewModel.updateTaskStatus(taskId, isCompleted) // עדכון סטטוס ב-ViewModel
+                taskViewModel.updateTaskStatus(taskId, isCompleted)
             }
-          findNavController().navigate(R.id.action_mainFragment_to_taskDetailsFragment, bundle)
-          binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-          binding.taskRecyclerView.adapter = adapter
+        )
 
-// Observe tasks
-          taskViewModel.incompleteTasks.observe(viewLifecycleOwner) { tasks ->
- 
-            adapter.updateTasks(tasks)
-          }
-          taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-  
-            adapter.updateTasks(tasks)
-          }
+        binding.taskRecyclerView.adapter = adapter
+        binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+
+        // עדכון הרשימה כאשר יש שינויים
+        taskViewModel.incompleteTasks.observe(viewLifecycleOwner) { tasks ->
+            adapter.updateTasks(tasks)
+        }
 
     }
 
