@@ -42,16 +42,20 @@ class MainFragment : Fragment() {
             onTaskStatusChanged = { taskId, isCompleted ->
                 taskViewModel.updateTaskStatus(taskId, isCompleted) // עדכון סטטוס ב-ViewModel
             }
-        )
+          findNavController().navigate(R.id.action_mainFragment_to_taskDetailsFragment, bundle)
+          binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+          binding.taskRecyclerView.adapter = adapter
 
-        binding.taskRecyclerView.adapter = adapter
-        binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-
-        // עדכון הרשימה כאשר יש שינויים
-        taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+// Observe tasks
+          taskViewModel.incompleteTasks.observe(viewLifecycleOwner) { tasks ->
+ 
             adapter.updateTasks(tasks)
-        }
+          }
+          taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+  
+            adapter.updateTasks(tasks)
+          }
+
 
     }
 

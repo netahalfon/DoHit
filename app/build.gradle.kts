@@ -39,6 +39,8 @@ android {
     }
     buildFeatures {
         viewBinding = true // מאפשר View Binding
+        dataBinding = true
+
     }
 }
 
