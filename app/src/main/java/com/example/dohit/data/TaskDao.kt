@@ -22,6 +22,10 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(task: Task)
 
+    //עבור עדכון הצאק בוקס
+    @Query("UPDATE tasks SET isCompleted = :isCompleted WHERE id = :taskId")
+    suspend fun updateTaskStatus(taskId: Int, isCompleted:Boolean)
+
     @Delete
     suspend fun deleteTask(task: Task)
 

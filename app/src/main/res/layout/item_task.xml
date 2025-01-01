@@ -1,43 +1,69 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/banner_bg"
     android:padding="16dp">
 
+
     <!-- תמונה של הקטגוריה -->
+
+    <!-- כותרת המשימה -->
+
+    <!-- תיאור המשימה -->
+
     <ImageView
         android:id="@+id/categoryImage"
         android:layout_width="38dp"
         android:layout_height="38dp"
-        android:layout_marginStart="8dp"
         android:contentDescription="@string/category_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:scaleType="centerCrop" />
+        app:layout_constraintVertical_bias="0.8" />
 
-    <!-- כותרת המשימה -->
     <TextView
         android:id="@+id/taskTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/task_title"
-        android:textStyle="bold"
         android:textColor="@color/dark_purple"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/categoryImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/checkbox_status"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- תיאור המשימה -->
     <TextView
         android:id="@+id/taskDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/task_description1"
         android:textColor="@color/dark_purple"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/categoryImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/checkbox_status"
         app:layout_constraintTop_toBottomOf="@id/taskTitle" />
+
+    <CheckBox
+        android:id="@+id/checkbox_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="@color/dark_purple"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:checked="true"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36708862" />
 </androidx.constraintlayout.widget.ConstraintLayout>

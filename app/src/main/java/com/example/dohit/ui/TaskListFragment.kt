@@ -22,8 +22,9 @@ class TaskListFragment : Fragment() {
 
     private var _binding: FragmentTaskListBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: TaskViewModel by viewModels()
     private lateinit var taskAdapter: TaskAdapter
+    private val taskViewModel: TaskViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,19 +39,16 @@ class TaskListFragment : Fragment() {
 
         // הגדרת כפתור חזור
         val backButton = view.findViewById<ImageButton>(R.id.backButton)
-
         setupButtonWithAnimation(backButton) {
             requireActivity().onBackPressed() // חזרה למסך הקודם
         }
 
-
-        // הצגת שם הקטגוריה בכותרת
-        val categoryTitle = view.findViewById<TextView>(R.id.taskCategoryTitle)
+        // קבלת שם הקטגוריה מתוך ה-arguments
         val folderName = arguments?.let {
             TaskListFragmentArgs.fromBundle(it).folderName
         }
 
-// המרת שם הקטגוריה לשפה המקומית
+        // המרת שם הקטגוריה לשפה המקומית
         val category = TaskCategory.entries.find { it.displayName == folderName }
         val localizedCategoryName = category?.getLocalizedDisplayName(Locale.getDefault().language)
             ?: if (Locale.getDefault().language == "he") {
@@ -59,29 +57,45 @@ class TaskListFragment : Fragment() {
                 getString(R.string.unknown_category)
             }
 
+        // הצגת שם הקטגוריה בכותרת
         binding.taskCategoryTitle.text = localizedCategoryName
-// עדכון הכותרת
-        categoryTitle.text = localizedCategoryName
+
 
 
         // הגדרת RecyclerView
-        taskAdapter = TaskAdapter(emptyList()) { task ->
-            val action = TaskListFragmentDirections.actionTaskListFragmentToTaskDetailsFragment(task.id)
-            findNavController().navigate(action)
-        }
+        taskAdapter = TaskAdapter(
+            tasks = emptyList(),
+            onTaskClick = { task ->
+                Log.d("TaskAdapter", "Task clicked: ${task.title}")
+            },
+            onTaskStatusChanged = { taskId, isCompleted ->
+                taskViewModel.updateTaskStatus(taskId, isCompleted)
+            }
+        )
         binding.recyclerViewTasks.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = taskAdapter
         }
 
         // טעינת משימות לפי הקטגוריה
-        if (folderName != null) {
-            val category = TaskCategory.entries.find { it.displayName == folderName || it.displayNameHebrew == folderName }
-            category?.let {
-                viewModel.getTasksByCategory(it.displayName).observe(viewLifecycleOwner) { tasks ->
-                    taskAdapter.updateTasks(tasks)
-                }
-            } ?: Log.e("TaskListFragment", "Category not found for folderName: $folderName")
+        if (category != null) {
+            taskViewModel.getTasksByCategory(category.displayName).observe(viewLifecycleOwner) { tasks ->
+                taskAdapter.updateTasks(tasks)
+            }
+        } else {
+            Log.e("TaskListFragment", "Category not found for folderName: $folderName")
+        }
+        
+
+        // טעינת משימות לפי הקטגוריה
+        taskViewModel.allTasks.observe(viewLifecycleOwner) { allTasks ->
+            if (category != null) {
+                val filteredTasks = allTasks.filter {  task ->
+                    task.category.displayName == category?.displayName}
+                taskAdapter.updateTasks(filteredTasks)
+            } else {
+                Log.e("TaskListFragment", "Category not found for folderName: $folderName")
+            }
         }
 
     }

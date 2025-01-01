@@ -11,7 +11,7 @@ data class Task(
     val category: TaskCategory,
     val lastModifiedDate: String,
     val imageUri: String? = null,
-    val isCompleted: Boolean,
+    var isCompleted: Boolean,
     val startTime: String? = null,  // זמן התחלה (אופציונלי)
     val endTime: String? = null
 )
