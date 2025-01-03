@@ -1,5 +1,6 @@
 package com.example.dohit.adapter
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -33,8 +34,10 @@ class CategoryAdapter(
 
         if (category == selectedCategory) {
             holder.itemView.setBackgroundResource(R.drawable.selected_category_background)
+            holder.categoryName.setTextColor(Color.WHITE) // Ensure text changes to white
         } else {
             holder.itemView.setBackgroundResource(R.drawable.category_background)
+            holder.categoryName.setTextColor(Color.BLACK)
         }
 
         holder.itemView.setOnClickListener {
