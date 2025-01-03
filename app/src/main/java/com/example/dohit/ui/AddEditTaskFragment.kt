@@ -165,8 +165,14 @@ class AddEditTaskFragment : Fragment() {
             val isCompleted = binding.checkboxStatus.isChecked
 
             // Validate inputs
-            if (title.isEmpty() || description.isEmpty() || selectedCategory == null) {
-                Toast.makeText(requireContext(), R.string.error_empty_fields, Toast.LENGTH_SHORT).show()
+            if (title.isEmpty()) {
+                Toast.makeText(requireContext(), R.string.error_empty_fields_title, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }else if ( description.isEmpty() ) {
+                Toast.makeText(requireContext(), R.string.error_empty_fields_description, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }else if ( selectedCategory == null) {
+                Toast.makeText(requireContext(), R.string.error_empty_fields_category, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

@@ -13,7 +13,9 @@
     <string name="save_task">שמור משימה</string>
     <string name="task_image">תמונת משימה</string>
     <string name="task_image_description">תיאור תמונת משימה</string>
-    <string name="error_empty_fields">ישנם שדות ריקים, אנא מלא את הפרטים</string>
+    <string name="error_empty_fields_title">אנא הזן כותרת למשימה!</string>
+    <string name="error_empty_fields_description">אנא הזן תיאור למשימה!</string>
+    <string name="error_empty_fields_category">אנא בחר קטגוריה למשימה!</string>
     <string name="profile">פרופיל</string>
     <string name="user_name">שם משתמש</string>
     <string name="future_mail">אימייל עתידי…</string>
