@@ -197,8 +197,15 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_back_arrow"
                     android:contentDescription="Edit Option 3" />
+
+
             </LinearLayout>
         </LinearLayout>
+        <!-- Spacer View -->
+        <View
+            android:id="@+id/bottomSpacer"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
