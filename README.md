@@ -18,12 +18,18 @@
 
 ## Screenshots 📸
 
-| **Screen**               | **Description**                                                                 |
-|---------------------------|-------------------------------------------------------------------------------|
-| **Main Screen**           | Displays the list of tasks with options to add or delete tasks.              |
-| **Add/Edit Task Screen**  | Provides a form to add or edit tasks with fields for title, description, etc. |
-| **Task Details Screen**   | Shows complete information about a selected task.                           |
-| **Confirmation Dialog**   | Alerts for task deletion with user confirmation.                            |
+| **Screen**                     | **Description**                                                                                  |
+|---------------------------------|----------------------------------------------------------------------------------------------|
+| **Main Screen**                 | Displays the list of tasks with options to add, edit, or delete tasks.                        |
+| **Add/Edit Task Screen**        | A form to add or edit tasks with fields for title, description, category, due date, and image.|
+| **Task Details Screen**         | Shows detailed information about a selected task, including its title, description, and more.|
+| **Settings Screen**             | Allows users to customize app preferences, such as language and notifications.               |
+| **Profile Screen**              | Displays user statistics, task completion rates, and other personal data.                    |
+| **My Folders Screen**           | Shows categorized folders for organizing tasks by themes or priorities.                      |
+| **Folder Details Screen**       | Lists all tasks associated with a selected folder, with options for interaction.             |
+| **Delete Confirmation Dialog**  | Alerts users to confirm task deletion.                                                       |
+| **Task Creation Confirmation Dialog** | Notifies users about successful task creation.                                        |
+
 
 ---
 
