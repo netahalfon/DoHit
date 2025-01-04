@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DoHit</string>
     <string name="hello_blank_fragment">שלום, פרגמנט ריק</string>
-    <string name="due_date">תאריך יעד: %s</string>
+    <string name="due_date">תאריך יצירה: %s</string>
     <string name="task_board">לוח משימות</string>
     <string name="task_description">תיאור משימה</string>
     <string name="enter_task_description">הכנס תיאור משימה</string>
@@ -59,4 +59,15 @@
     <string name="delete_task">מחיקת משימה</string>
     <string name="delete_confirmation">האם אתה בטוח שברצונך למחוק משימה זו?</string>
     <string name="cancel">ביטול</string>
+    <string name="category_image">Category Image</string>
+    <string name="start_time">זמן התחלה: %s</string>
+    <string name="end_time">זמן סיום: %s</string>
+    <string name="start_date">תאריך התחלה</string>
+    <string name="select_start_date">תאריך התחלה</string>
+    <string name="starting_time">זמן התחלה</string>
+    <string name="select_start_time">זמן התחלה</string>
+    <string name="end_date">תאריך סיום</string>
+    <string name="select_end_date">תאריך סיום</string>
+    <string name="ending_time">זמן סיום</string>
+    <string name="select_end_time">זמן סיום</string>
 </resources>
