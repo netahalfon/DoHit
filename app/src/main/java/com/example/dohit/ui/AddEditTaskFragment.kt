@@ -1,5 +1,7 @@
 package com.example.dohit.ui
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -39,6 +41,10 @@ class AddEditTaskFragment : Fragment() {
     private val binding get() = _binding!!
     private var selectedImageUri: String? = null
     private var taskId: Int =-1
+    private var startDate: String? = null
+    private var startTime: String? = null
+    private var endDate: String? = null
+    private var endTime: String? = null
 
     private val taskViewModel: TaskViewModel by viewModels()
 
@@ -56,6 +62,34 @@ class AddEditTaskFragment : Fragment() {
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun showDatePicker(onDateSelected: (String) -> Unit) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
+            val formattedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
+            onDateSelected(formattedDate)
+        }, year, month, day)
+
+        datePickerDialog.show()
+    }
+
+    // פונקציה לבחירת שעה
+    private fun showTimePicker(onTimeSelected: (String) -> Unit) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(requireContext(), { _, selectedHour, selectedMinute ->
+            val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+            onTimeSelected(formattedTime)
+        }, hour, minute, true)
+
+        timePickerDialog.show()
     }
 
     private fun showAnimatedToast(message: String) {
@@ -117,6 +151,34 @@ class AddEditTaskFragment : Fragment() {
 
         setupButtonWithAnimation(backButton) {
             requireActivity().onBackPressed() // חזרה למסך הקודם
+        }
+
+        binding.buttonStartDate.setOnClickListener {
+            showDatePicker { selectedDate ->
+                startDate = selectedDate
+                binding.buttonStartDate.text = selectedDate
+            }
+        }
+
+        binding.buttonStartTime.setOnClickListener {
+            showTimePicker { selectedTime ->
+                startTime = selectedTime
+                binding.buttonStartTime.text = selectedTime
+            }
+        }
+
+        binding.buttonEndDate.setOnClickListener {
+            showDatePicker { selectedDate ->
+                endDate = selectedDate
+                binding.buttonEndDate.text = selectedDate
+            }
+        }
+
+        binding.buttonEndTime.setOnClickListener {
+            showTimePicker { selectedTime ->
+                endTime = selectedTime
+                binding.buttonEndTime.text = selectedTime
+            }
         }
 
 
@@ -187,7 +249,9 @@ class AddEditTaskFragment : Fragment() {
                     lastModifiedDate = currentDate,
                     category = selectedCategory,
                     isCompleted = isCompleted,
-                    imageUri = selectedImageUri
+                    imageUri = selectedImageUri,
+                    startTime = "$startDate $startTime",
+                    endTime = "$endDate $endTime"
                 )
             } else { // עריכת מטלה
                 task = Task(
@@ -197,9 +261,14 @@ class AddEditTaskFragment : Fragment() {
                     lastModifiedDate = currentDate,
                     category = selectedCategory,
                     isCompleted = isCompleted,
-                    imageUri = selectedImageUri
+                    imageUri = selectedImageUri,
+                    startTime = "$startDate $startTime",
+                    endTime = "$endDate $endTime"
                 )
             }
+
+
+
 
             // הצגת GIF בעת לחיצה
             binding.saveButton.setImageResource(R.drawable.add) // החלף ב-GIF המתאים
@@ -228,6 +297,7 @@ class AddEditTaskFragment : Fragment() {
                 }
             }, 3000) // משך זמן ה-GIF במילישניות
         }
+
 
 
 
