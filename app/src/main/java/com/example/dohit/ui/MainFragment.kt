@@ -1,16 +1,15 @@
 package com.example.dohit.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dohit.R
+import com.example.dohit.adapter.TaskAdapter
 import com.example.dohit.data.Task
 import com.example.dohit.databinding.FragmentMainBinding
 import com.example.dohit.viewmodel.TaskViewModel
