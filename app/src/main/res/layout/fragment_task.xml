@@ -6,7 +6,9 @@
 
     android:layout_height="match_parent">
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -546,8 +548,13 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Spacer View -->
+        <View
+            android:id="@+id/bottomSpacer"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </LinearLayout>
+</ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
