@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:scaleX="1.5"
         android:scaleY="1.5"
+        android:buttonTint="@color/dark_purple"
         android:textColor="@color/dark_purple"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
