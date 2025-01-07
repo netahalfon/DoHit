@@ -125,8 +125,78 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:listitem="@layout/item_category" />
 
+        <!-- תאריך ושעת התחלה -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal">
 
-            <!-- סטטוס משימה -->
+            <Button
+                android:id="@+id/button_start_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/select_start_date"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/dark_purple"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/button_start_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/select_start_time"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/dark_purple"
+                android:padding="12dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- תאריך ושעת סיום -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/button_end_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/select_end_date"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/dark_purple"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/button_end_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/select_end_time"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/dark_purple"
+                android:padding="12dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+
+
+
+        <!-- סטטוס משימה -->
             <CheckBox
                 android:id="@+id/checkbox_status"
                 android:layout_width="wrap_content"

@@ -51,6 +51,11 @@ class TaskDetailsFragment : Fragment() {
                 binding.taskDescriptionDetails.text = it.description
                 binding.taskDueDateDetails.text = getString(R.string.due_date, it.lastModifiedDate)
                 binding.taskCategoryDetails.text = getString(R.string.category, task.category.getLocalizedDisplayName())
+                binding.taskStartTimeDetails.text = getString(R.string.start_time, task.startTime ?: "N/A")
+                binding.taskEndTimeDetails.text = getString(R.string.end_time, task.endTime ?: "N/A")
+
+
+
 
 
                 // הצגת תמונה במידת הצורך

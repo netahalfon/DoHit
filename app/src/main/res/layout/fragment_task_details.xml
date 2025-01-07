@@ -65,6 +65,26 @@
                 android:layout_marginBottom="16dp"
                 android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/taskStartTimeDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_time"
+                android:textColor="@color/dark_purple"
+                android:layout_marginBottom="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/taskEndTimeDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/end_time"
+                android:textColor="@color/dark_purple"
+                android:layout_marginBottom="16dp"
+                android:textSize="16sp" />
+
+
+
             <!-- קטגוריה -->
             <TextView
                 android:id="@+id/taskCategoryDetails"
@@ -104,6 +124,8 @@
                     android:backgroundTint="@color/dark_purple"
                     android:textColor="@color/white"
                     android:text="@string/edit"
+                    android:textAllCaps="false"
+
                     android:layout_marginEnd="8dp" />
 
                 <Button
@@ -111,6 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:backgroundTint="@color/dark_purple"
                     android:text="@string/delete" />
