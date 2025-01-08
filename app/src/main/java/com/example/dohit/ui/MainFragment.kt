@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//update text 2 (nigh/morning...)
+        //update the greeting massage  (nigh/morning...)
         updateGreeting()
         // RecyclerView
         val adapter = TaskAdapter(
@@ -72,6 +72,8 @@ class MainFragment : Fragment() {
         }
 
     }
+
+    //changing the greeting massage by the time
     private fun updateGreeting() {
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val greeting = when {
