@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment"
-    android:background="@drawable/background">
+    tools:context=".ui.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,17 +15,16 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/app_name">
 
-        </ScrollView>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/background">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="256dp"
-                tools:ignore="MissingConstraints">
+                android:layout_height="256dp">
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -37,8 +35,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.904"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintVertical_bias="0.904" />
 
                 <TextView
                     android:id="@+id/profile_txt"
@@ -106,12 +103,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="76"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
                     android:textColor="@color/dark_purple"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="28dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tasks_completed_txt"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="HardcodedText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -154,63 +151,16 @@
                     android:textColor="@color/dark_purple"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:layout_marginEnd="28dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.649"
-                    app:layout_constraintStart_toEndOf="@+id/ongoing_tasks_txt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="HardcodedText" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="79dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="16dp">
-
-
-                <ImageView
-                    android:id="@+id/streak_img"
-                    android:layout_width="84dp"
-                    android:layout_height="43dp"
-                    android:src="@drawable/fire"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/streak_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/highest_streak"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/dark_purple"
-                    app:layout_constraintBottom_toBottomOf="@+id/streak_img"
-                    app:layout_constraintStart_toEndOf="@+id/streak_img"
-                    app:layout_constraintTop_toTopOf="@+id/streak_img" />
-
-                <TextView
-                    android:id="@+id/highest_streak_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="76"
-                    android:textColor="@color/dark_purple"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.649"
-                    app:layout_constraintStart_toEndOf="@+id/streak_txt"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="HardcodedText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

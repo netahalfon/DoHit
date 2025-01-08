@@ -34,7 +34,7 @@
     <string name="good_morning">בוקר טוב</string>
     <string name="welcome">ברוך.ה הבא.ה</string>
     <string name="let_s_schedule_your_nprojects">בוא נתכנן את\nהפרויקטים שלך</string>
-    <string name="ongoing_project">המשימות שלי</string>
+    <string name="ongoing_project">המשימות שלי:</string>
     <string name="educationc">חינוך</string>
     <string name="folder_image">תמונת תיקיה</string>
     <string name="hobbies">תחביבים</string>
@@ -70,4 +70,6 @@
     <string name="select_end_date">תאריך סיום</string>
     <string name="ending_time">זמן סיום</string>
     <string name="select_end_time">זמן סיום</string>
+    <string name="good_night">לילה טוב</string>
+    <string name="good_afternoon">צהריים טובים</string>
 </resources>
