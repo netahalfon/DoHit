@@ -74,6 +74,8 @@
     <string name="select_end_date">Due Date</string>
     <string name="ending_time">End Time</string>
     <string name="select_end_time">Ending Time</string>
+    <string name="good_night">Good Night</string>
+    <string name="good_afternoon">Good Afternoon</string>
 
 
 </resources>

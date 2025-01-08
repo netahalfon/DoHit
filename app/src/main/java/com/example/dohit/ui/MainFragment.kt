@@ -13,6 +13,8 @@ import com.example.dohit.adapter.TaskAdapter
 import com.example.dohit.data.Task
 import com.example.dohit.databinding.FragmentMainBinding
 import com.example.dohit.viewmodel.TaskViewModel
+import java.util.Calendar
+
 
 class MainFragment : Fragment() {
 
@@ -22,6 +24,7 @@ class MainFragment : Fragment() {
     private val taskViewModel: TaskViewModel by viewModels()
 
     private lateinit var taskAdapter: TaskAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,8 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+//update text 2 (nigh/morning...)
+        updateGreeting()
         // RecyclerView
         val adapter = TaskAdapter(
             tasks = emptyList(),
@@ -68,7 +72,15 @@ class MainFragment : Fragment() {
         }
 
     }
-
+    private fun updateGreeting() {
+        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val greeting = when {
+            currentHour in 6..11 -> getString(R.string.good_morning) // בוקר טוב
+            currentHour in 12..17 -> getString(R.string.good_afternoon) // צהריים טובים
+            else -> getString(R.string.good_night) // לילה טוב
+        }
+        binding.textView2.text = greeting
+    }
 
 
     //סינון רשימת המשימות בהתאם למחרוזת
@@ -78,6 +90,7 @@ class MainFragment : Fragment() {
         }
         return filteredTasks ?: emptyList()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
