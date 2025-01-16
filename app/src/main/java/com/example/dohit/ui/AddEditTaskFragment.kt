@@ -20,8 +20,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dohit.R
-import com.example.dohit.data.Task
-import com.example.dohit.data.TaskCategory
+import com.example.dohit.data.task.Task
+import com.example.dohit.data.task.TaskCategory
 import com.example.dohit.databinding.FragmentAddEditTaskBinding
 import com.example.dohit.viewmodel.TaskViewModel
 import java.text.SimpleDateFormat
@@ -34,6 +34,8 @@ import com.example.dohit.adapter.CategoryAdapter
 import com.example.dohit.utils.setupButtonWithAnimation
 import kotlinx.coroutines.launch
 import java.io.File
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
 class AddEditTaskFragment : Fragment() {
 
@@ -48,6 +50,7 @@ class AddEditTaskFragment : Fragment() {
 
     private val taskViewModel: TaskViewModel by viewModels()
 
+    //Allows the user to select an image from the device, and use it on the current screen
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             try {
@@ -64,6 +67,7 @@ class AddEditTaskFragment : Fragment() {
         }
     }
 
+    //Opens a window to select a date
     private fun showDatePicker(onDateSelected: (String) -> Unit) {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -78,7 +82,7 @@ class AddEditTaskFragment : Fragment() {
         datePickerDialog.show()
     }
 
-    // פונקציה לבחירת שעה
+    // Opens a window to  select Time
     private fun showTimePicker(onTimeSelected: (String) -> Unit) {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
@@ -91,7 +95,7 @@ class AddEditTaskFragment : Fragment() {
 
         timePickerDialog.show()
     }
-
+// לא סגורה מה זה עושה
     private fun showAnimatedToast(message: String) {
         // יצירת Layout מותאם אישית
         val inflater = LayoutInflater.from(requireContext())
@@ -122,12 +126,11 @@ class AddEditTaskFragment : Fragment() {
         val categories = TaskCategory.entries
         Log.d("AddEditTaskFragment", "Categories: ${categories.joinToString { it.getLocalizedDisplayName() }}")
 
-        // הגדרת ה-RecyclerView
+        //  הגדרת ה-RecyclerView של הקטגוריות
         categoryAdapter = CategoryAdapter(categories) { selectedCategory ->
             // עדכון הקטגוריה הנבחרת ב-ViewModel
             taskViewModel.setSelectedCategory(selectedCategory)
         }
-
         binding.categoryRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.categoryRecyclerView.adapter = categoryAdapter
@@ -195,6 +198,28 @@ class AddEditTaskFragment : Fragment() {
                     binding.checkboxStatus.isChecked = it.isCompleted
                     categoryAdapter.setSelectedCategory(it.category)
 
+                    // עדכון תאריכים ושעות
+                    if (!it.startTime.isNullOrEmpty()) {
+                        val startDateTimeParts = it.startTime.split(" ")
+                        if (startDateTimeParts.size == 2) {
+                            startDate = startDateTimeParts[0] // תאריך התחלה
+                            startTime = startDateTimeParts[1] // שעה התחלה
+                            binding.buttonStartDate.text = startDate
+                            binding.buttonStartTime.text = startTime
+                        }
+                    }
+
+                    if (!it.endTime.isNullOrEmpty()) {
+                        val endDateTimeParts = it.endTime.split(" ")
+                        if (endDateTimeParts.size == 2) {
+                            endDate = endDateTimeParts[0] // תאריך סיום
+                            endTime = endDateTimeParts[1] // שעה סיום
+                            binding.buttonEndDate.text = endDate
+                            binding.buttonEndTime.text = endTime
+                        }
+                    }
+
+
                     if (!it.imageUri.isNullOrEmpty()) {
                         try {
                             val uri = Uri.parse(it.imageUri)
@@ -219,56 +244,105 @@ class AddEditTaskFragment : Fragment() {
         }
 
         // לחיצה על כפתור שמירה
-// לחיצה על כפתור שמירה
         binding.saveButton.setOnClickListener {
-            val title = binding.editTaskName.text.toString()
-            val description = binding.editTaskDescription.text.toString()
+            val title = binding.editTaskName.text.toString().trim()
+            val description = binding.editTaskDescription.text.toString().trim()
             val selectedCategory = categoryAdapter.getSelectedCategory() // קבלת הקטגוריה הנבחרת מה-Adapter
             val isCompleted = binding.checkboxStatus.isChecked
+            val startDate = this@AddEditTaskFragment.startDate
+            val startTime = this@AddEditTaskFragment.startTime
+            val endDate = this@AddEditTaskFragment.endDate
+            val endTime = this@AddEditTaskFragment.endTime
 
-            // Validate inputs
+
+            val missingFields = mutableListOf<String>() // רשימה לשדות חסרים
+
+                // איפוס הגבול של כל השדות (כדי להסיר אדום אם הכל תקין)
+            binding.taskNameLabel.setTextColor(resources.getColor(R.color.dark_purple, null))
+            binding.taskDescription.setTextColor(resources.getColor(R.color.dark_purple, null))
+            binding.textViewCategoryTitle.setTextColor(resources.getColor(R.color.dark_purple, null))
+            binding.startDateLabel.setTextColor(resources.getColor(R.color.dark_purple, null))
+            binding.endDateLabel.setTextColor(resources.getColor(R.color.dark_purple, null))
+
             if (title.isEmpty()) {
-                Toast.makeText(requireContext(), R.string.error_empty_fields_title, Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }else if ( description.isEmpty() ) {
-                Toast.makeText(requireContext(), R.string.error_empty_fields_description, Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }else if ( selectedCategory == null) {
-                Toast.makeText(requireContext(), R.string.error_empty_fields_category, Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                missingFields.add(getString(R.string.taskTitle))
+               binding.taskNameLabel.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+            }
+            if (description.isEmpty()) {
+                missingFields.add(getString(R.string.task_description))
+                binding.taskDescription.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+            }
+            if (selectedCategory == null) {
+                missingFields.add(getString(R.string.task_category))
+                binding.textViewCategoryTitle.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+            //TO DO: מראה לכך שחסר קטגוריה
             }
 
-            val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                .format(Calendar.getInstance().time)
+            if (startDate.isNullOrEmpty() || startTime.isNullOrEmpty()) {
+                missingFields.add(getString(R.string.starting_date))
+                binding.startDateLabel.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+            }
 
-            val task: Task
-            if (taskId == -1) { // יצירת מטלה חדשה
-                task = Task(
+            if (endDate.isNullOrEmpty() || endTime.isNullOrEmpty()) {
+                missingFields.add(getString(R.string.end_date_label))
+                binding.endDateLabel.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+            }
+            // אם רשימת השדות החסרים אינה ריקה, הצגת הודעת שגיאה ומניעת המשך פעולה
+            if (missingFields.isNotEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "${getString(R.string.missing_fields)}: ${missingFields.joinToString(", ")}",
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }else {
+                // when all required fields are filled, need to check if start < end
+                val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+
+                val startDateTime: Date = formatter.parse("$startDate $startTime")
+                val endDateTime: Date = formatter.parse("$endDate $endTime")
+
+                if(endDateTime.before(startDateTime)){
+                    binding.startDateLabel.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+                    binding.endDateLabel.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.start_end_validation_error),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setOnClickListener
+                }
+            }
+                // המשך שמירת המשימה אם הכל תקין
+            val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    .format(Calendar.getInstance().time)
+
+
+
+            val task = if (taskId == -1) { // יצירת מטלה חדשה
+                Task(
                     title = title,
                     description = description,
                     lastModifiedDate = currentDate,
-                    category = selectedCategory,
+                    category = selectedCategory!!,
                     isCompleted = isCompleted,
                     imageUri = selectedImageUri,
                     startTime = "$startDate $startTime",
                     endTime = "$endDate $endTime"
                 )
             } else { // עריכת מטלה
-                task = Task(
+                Task(
                     id = taskId,
                     title = title,
                     description = description,
                     lastModifiedDate = currentDate,
-                    category = selectedCategory,
+                    category = selectedCategory!!,
                     isCompleted = isCompleted,
                     imageUri = selectedImageUri,
                     startTime = "$startDate $startTime",
                     endTime = "$endDate $endTime"
                 )
             }
-
-
-
 
             // הצגת GIF בעת לחיצה
             binding.saveButton.setImageResource(R.drawable.add) // החלף ב-GIF המתאים
@@ -298,10 +372,7 @@ class AddEditTaskFragment : Fragment() {
             }, 3000) // משך זמן ה-GIF במילישניות
         }
 
-
-
-
-    }
+       }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

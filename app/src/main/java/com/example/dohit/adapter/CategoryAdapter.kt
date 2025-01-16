@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dohit.R
-import com.example.dohit.data.TaskCategory
+import com.example.dohit.data.task.TaskCategory
 
 class CategoryAdapter(
     private val categories: List<TaskCategory>,

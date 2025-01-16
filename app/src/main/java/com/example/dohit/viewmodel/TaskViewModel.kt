@@ -6,9 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.dohit.data.Task
-import com.example.dohit.data.TaskCategory
-import com.example.dohit.data.TaskDatabase
+import com.example.dohit.data.task.Task
+import com.example.dohit.data.task.TaskCategory
+import com.example.dohit.data.task.TaskDatabase
 import com.example.dohit.repository.TaskRepository
 import kotlinx.coroutines.launch
 

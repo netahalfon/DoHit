@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dohit.R
 import com.example.dohit.adapter.TaskAdapter
-import com.example.dohit.data.TaskCategory
+import com.example.dohit.data.task.TaskCategory
 import com.example.dohit.databinding.FragmentTaskListBinding
 import com.example.dohit.utils.setupButtonWithAnimation
 import com.example.dohit.viewmodel.TaskViewModel

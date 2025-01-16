@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dohit.R
 import com.example.dohit.adapter.TaskAdapter
-import com.example.dohit.data.Task
+import com.example.dohit.data.task.Task
 import com.example.dohit.databinding.FragmentMainBinding
 import com.example.dohit.viewmodel.TaskViewModel
 import java.util.Calendar

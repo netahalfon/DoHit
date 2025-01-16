@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.dohit.R
-import com.example.dohit.data.TaskCategory
+import com.example.dohit.data.task.TaskCategory
 import com.example.dohit.databinding.FragmentTaskBinding
 import com.example.dohit.utils.setupButtonWithAnimation
 import com.example.dohit.viewmodel.TaskViewModel
@@ -136,7 +136,8 @@ class TaskFragment : Fragment() {
 
                     lifecycleScope.launch {
                         delay(1800) // השהיה של 2 שניות
-                        val action = TaskFragmentDirections.actionTaskFragmentToTaskListFragment(TaskCategory.entries[index].displayName)
+                        val action = TaskFragmentDirections.actionTaskFragmentToTaskListFragment(
+                            TaskCategory.entries[index].displayName)
                         findNavController().navigate(action)
                     }
                 }

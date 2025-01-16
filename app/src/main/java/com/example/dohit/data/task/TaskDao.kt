@@ -1,4 +1,4 @@
-package com.example.dohit.data
+package com.example.dohit.data.task
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

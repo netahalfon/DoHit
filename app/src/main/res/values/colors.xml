@@ -7,5 +7,6 @@
     <color name="dark_purple">#333399</color>
     <color name="light_purple">#F1EBFD</color>
     <color name="turquoise">#bbfcf9</color>
+    <color name="holo_red_dark">#F44336</color>
 
 </resources>
