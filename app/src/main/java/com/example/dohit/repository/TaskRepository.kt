@@ -2,9 +2,9 @@ package com.example.dohit.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.example.dohit.data.Task
-import com.example.dohit.data.TaskCategory
-import com.example.dohit.data.TaskDao
+import com.example.dohit.data.task.Task
+import com.example.dohit.data.task.TaskCategory
+import com.example.dohit.data.task.TaskDao
 
 class TaskRepository(private val taskDao: TaskDao) {
     val allTasks: LiveData<List<Task>> = taskDao.getAllTasks()

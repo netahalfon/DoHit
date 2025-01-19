@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
 
 // Settings Button
         setupButtonWithAnimation(binding.linearLayoutSettings) {
-            if (navController.currentDestination?.id != R.id.settingsFragment) {
-                navController.navigate(R.id.settingsFragment, null, navOptions)
+            if (navController.currentDestination?.id != R.id.networkConnectivityFragment) {
+                navController.navigate(R.id.networkConnectivityFragment, null, navOptions)
             }
         }
 

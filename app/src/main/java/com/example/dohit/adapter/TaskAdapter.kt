@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dohit.R
-import com.example.dohit.data.Task
-import com.example.dohit.data.TaskCategory
+import com.example.dohit.data.task.Task
+import com.example.dohit.data.task.TaskCategory
 import com.example.dohit.databinding.ItemTaskBinding
 
 class TaskAdapter(

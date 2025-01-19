@@ -1,4 +1,4 @@
-package com.example.dohit.data
+package com.example.dohit.data.task
 
 import java.util.Locale
 
@@ -11,7 +11,7 @@ enum class TaskCategory(val displayName: String, val displayNameHebrew: String) 
     Urgent("Urgent", "דחוף");
 
     fun getLocalizedDisplayName(locale: String = Locale.getDefault().language): String {
-        return if (locale == "he") displayNameHebrew else displayName
+        return if (locale == "iw") displayNameHebrew else displayName
     }
 
 }

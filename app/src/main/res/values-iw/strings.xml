@@ -23,7 +23,7 @@
     <string name="ongoing_tasks">משימות פעילות:</string>
     <string name="highest_streak">שיא רצף משימות:</string>
     <string name="home">בית</string>
-    <string name="settings">הגדרות</string>
+    <string name="internet_connection">חיבור לאינטרנט</string>
     <string name="my_tasks">המשימות שלי</string>
     <string name="profile_home">פרופיל</string>
     <string name="prof_home_pic">תמונת פרופיל בית</string>
@@ -72,4 +72,10 @@
     <string name="select_end_time">זמן סיום</string>
     <string name="good_night">לילה טוב</string>
     <string name="good_afternoon">צהריים טובים</string>
+    <string name="due_date_label">משך המשימה</string>
+    <string name="starting_date">תחילת המשימה</string>
+    <string name="end_date_label">סיום ביצוע משימה</string>
+    <string name="missing_fields">שדות חסרים</string>
+    <string name="start_end_validation_error">תאריך ושעת הסיום לא יכולים להיות לפני תאריך ושעת ההתחלה!</string>
+    <string name="coming_soon">ההמשך יבוא :)</string>
 </resources>

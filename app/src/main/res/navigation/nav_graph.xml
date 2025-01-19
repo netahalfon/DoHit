@@ -80,10 +80,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.dohit.ui.SettingsFragment"
-        android:label="SettingsFragment"
-        tools:layout="@layout/fragment_settings">
+        android:id="@+id/networkConnectivityFragment"
+        android:name="com.example.dohit.ui.NetworkConnectivityFragment"
+        android:label="NetworkConnectivity"
+        tools:layout="@layout/fragment_network_connectivity">
 
     </fragment>
 

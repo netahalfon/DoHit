@@ -53,6 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/taskNameLabel"
                 android:text="@string/taskTitle"
                 android:textColor="@color/dark_purple"
                 android:textStyle="bold"
@@ -125,6 +126,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:listitem="@layout/item_category" />
 
+        <TextView
+            android:id="@+id/startDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/starting_date"
+            android:textSize="16sp"
+            android:textColor="@color/dark_purple"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
         <!-- תאריך ושעת התחלה -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -159,6 +170,16 @@
                 android:layout_marginStart="8dp" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/endDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_date_label"
+            android:textSize="16sp"
+            android:textColor="@color/dark_purple"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
         <!-- תאריך ושעת סיום -->
         <LinearLayout
             android:layout_width="match_parent"

@@ -27,10 +27,9 @@
                 android:layout_height="256dp">
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/profileImage"
                     android:layout_width="137dp"
                     android:layout_height="119dp"
-                    android:src="@drawable/prof_img1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -45,14 +44,14 @@
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/imageView8"
+                    app:layout_constraintBottom_toTopOf="@+id/profileImage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/userNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/user_name"
@@ -61,12 +60,36 @@
                 android:textStyle="bold"
                 android:textAlignment="center"/>
 
+            <EditText
+                android:id="@+id/userNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textColor="@color/dark_purple"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:background="@android:color/transparent"
+                android:textAlignment="center" />
+
+
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/emailTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="@string/future_mail" />
+
+            <EditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:background="@android:color/transparent"
+                android:textAlignment="center" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
